@@ -5,8 +5,10 @@
 package it.polito.tdp.borders;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.borders.model.Country;
 import it.polito.tdp.borders.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,13 +33,23 @@ public class BordersController {
 
 	@FXML
 	void doCalcolaConfini(ActionEvent event) {
-
-		txtResult.setText("Todo!");
+		int anno = Integer.parseInt(txtAnno.getText());
+		Map<Country, Integer> stats = model.calcolaConfini(anno);
+		for (Country country : stats.keySet()){
+		txtResult.appendText(country +" PAESI CONFINANTI: "+ stats.get(country) +"\n");
+		txtResult.appendText("" +model.getNumberOfConnectedComponents());
+		}
+		
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		assert txtAnno != null : "fx:id=\"txtAnno\" was not injected: check your FXML file 'Borders.fxml'.";
 		assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Borders.fxml'.";
+	}
+
+	public void setModel(Model model2) {
+		this.model = model2;
+		
 	}
 }
