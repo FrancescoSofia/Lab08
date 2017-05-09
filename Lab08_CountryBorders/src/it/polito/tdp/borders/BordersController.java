@@ -16,7 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class BordersController {
-
+ 
 	Model model;
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
